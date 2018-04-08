@@ -1,5 +1,9 @@
 body {
 	font-family: Arial, Helvetica, sans-serif;
+	text-align: center;
+	font-size: 16px;
+	background-size: 100%;
+	color: white;
 }
 
 table {
@@ -24,10 +28,21 @@ div {
 }
 
 #repo-autocomplete {
-	width: 200px;
+	width: 300px;
+	height: 36px;
+	padding-left: 5px;
 }
 
-#myChart {
-	width: 400px;
-	height: 400px;
+.ui-autocomplete-input {
+	width: 300px;
 }
+
+input[type='text'] {
+	font-size: 16px;
+}
+
+canvas {
+	background-color: white;
+	margin: 10px auto;
+}
+

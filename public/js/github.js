@@ -1,7 +1,6 @@
 $(document).ready(function () {
     const $repo = $('#repo');
     const $repoInput = $('#repo-autocomplete');
-    let myChart = null;
     const $contributors = $('#contributors');
 
     $repoInput.autocomplete({
@@ -52,7 +51,7 @@ $(document).ready(function () {
                     drawBarChart(
                         data.names,
                         data.contributions,
-                        'Contribution chart of repo ' + selectedRepo
+                        'Contribution chart of repo "' + selectedRepo + '"'
                     );
                 },
                 error: function (xhr, ajaxOptions, thrownError) {

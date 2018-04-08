@@ -12,7 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class GithubController extends Controller {
 
     /**
-     * @Route("/github", name="github_homepage", methods={"GET"})
+     * @Route("/", name="homepage", methods={"GET"})
      */
     public function index() {
         return $this->render('github/index.html.twig');

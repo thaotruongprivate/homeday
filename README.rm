@@ -1,0 +1,28 @@
+Homeday assignment's requirements:
+
+Basic version
+
+* Create a search field with a (repo) typeahead, where user can type any github username and the search would return the list of users github repos
+* User can then select a repo from the typeahead dropdown and the app should display a graph of contributions per user for this repo (x axis users, y axis number of contributions)
+* Make sure to handle the case, when username does not exist or user has no repos
+
+Fancy version (Optional)
+
+* Use ECMAScript 6
+* Make it look nice design wise
+
+Additional info
+
+* API endpoints needed (repos and contributors) - e.g.: https://api.github.com/users/angular/repos, https://api.github.com/repos/angular/angular/contributors
+* Feel free to use any other open API, that could make the assignment better/easier
+
+General guidelines
+
+* Project should be build with one of the Javascript frameworks/libraries of your choosing
+* The code should be readable and clearly commented when needed
+* The project should be pushed to a public github repository
+* You can use all the open source libraries you need
+* README.md should contain project documentation (how to run and build the project locally from scratch, project structure, gotchas,... anything worth mentioning)
+* The project should support IE11+, Android native browser 4.4+ and all modern browsers (current version - 1)
+* The UI should be responsive
+* HTML should be semantic
