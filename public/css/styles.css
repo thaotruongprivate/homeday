@@ -1,0 +1,33 @@
+body {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+table {
+	font-size: 1em;
+}
+
+.ui-draggable, .ui-droppable {
+	background-position: top;
+}
+
+.error {
+	margin-left: 5px;
+	color: red;
+}
+
+#contributors {
+	display: none;
+}
+
+div {
+	margin-bottom: 10px;
+}
+
+#repo-autocomplete {
+	width: 200px;
+}
+
+#myChart {
+	width: 400px;
+	height: 400px;
+}

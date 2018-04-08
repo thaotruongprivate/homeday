@@ -1,12 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello {{ controller_name }}!{% endblock %}
+{% block title %}GitHub{% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
     <script src="{{ asset('js/github.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
 {% endblock %}
 
 {% block body %}
-    Choose repo: <input type="text" data-url="{{ path('show_repos', {username: '<username>'}) }}" id="repo" placeholder="Username"/>
+    <div id="repo">
+        <h1>Choose a GitHub Repo</h1>
+        <label>Choose repo:</label> <input type="text" data-url="{{ path('show_repos') }}" id="repo-autocomplete"
+                            data-url-contributors="{{ path('show_repo_contributors') }}"
+                            placeholder="Username[/repo]"/><span class="error"></span>
+    </div>
+    <div id="contributors">
+        <label>Contributors:</label><span class="error"></span>
+    </div>
 {% endblock %}
