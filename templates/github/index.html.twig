@@ -4,18 +4,27 @@
 
 {% block javascripts %}
     {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/github.css') }}">
     <script src="{{ asset('js/github.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
+    <script>
+        $(document).ready(function () {
+            const $wrapper = $('.js-github');
+            const gitHub = new RepLogApp($wrapper);
+        });
+    </script>
 {% endblock %}
 
 {% block body %}
-    <div id="repo">
-        <h1>Choose a GitHub Repo</h1>
-        <label>Choose repo:</label> <input type="text" data-url="{{ path('show_repos') }}" id="repo-autocomplete"
-                            data-url-contributors="{{ path('show_repo_contributors') }}"
-                            placeholder="Username[/repo]"/><span class="error"></span>
-    </div>
-    <div id="contributors">
-        <label>Contributors:</label><span class="error"></span>
+    <div class="js-github">
+        <div id="repo">
+            <h1>Choose a GitHub Repo</h1>
+            <label>Choose repo:</label> <input type="text" data-url="{{ path('show_repos') }}" id="repo-autocomplete"
+                                               data-url-contributors="{{ path('show_repo_contributors') }}"
+                                               placeholder="Username[/repo]"/><span class="error"></span>
+        </div>
+        <div id="contributors">
+            <label>Contributors:</label><span class="error"></span>
+            <div class="canvas"></div>
+        </div>
     </div>
 {% endblock %}
