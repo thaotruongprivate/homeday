@@ -35,6 +35,7 @@ yarn install
 ## Room for improvements:
 - because suggestions are loaded dynamically instead of pre-loaded, speed might be slow. If this app were to be deployed to production, user's queries and their suggestions should be cached in the browser to improve user's experience
 - I don't have much experience with responsive UI and my design skills aren't great so I did what I could to make the app looks nice
+- GitHub seems to allow only 60 unauthorised API requests per IP address per hour, so if you want to make more, change your IP address frequently with VPN or alter the code to make authorised requests
 
 
 
