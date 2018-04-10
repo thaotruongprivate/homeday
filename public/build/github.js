@@ -34681,6 +34681,10 @@ var GitHubApp = function () {
             $canvasDiv.html('');
             $('.error', this.$wrapper).html('');
 
+            if (ui.item.value.search('/') === -1) {
+                return false;
+            }
+
             $.ajax({
                 url: Routing.generate('show_repo_contributors') + '?query=' + encodeURIComponent(ui.item.value),
                 dataType: 'json',

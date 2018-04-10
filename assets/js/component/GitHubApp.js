@@ -12,7 +12,7 @@ class GitHubApp {
             select: this._onSelect,
             minLength: 1,
             autoFocus: true
-        })
+        });
     }
 
     _onSelect(event, ui) {
@@ -22,6 +22,10 @@ class GitHubApp {
         $contributors.hide();
         $canvasDiv.html('');
         $('.error', this.$wrapper).html('');
+
+        if (ui.item.value.search('/') === -1) {
+            return false;
+        }
 
         $.ajax({
             url: `${Routing.generate('show_repo_contributors')}?query=${encodeURIComponent(ui.item.value)}`,
@@ -60,7 +64,7 @@ class GitHubApp {
             error: (xhr) => {
                 $('.error', this.$wrapper).html(
                     JSON.parse(xhr.responseText).error
-                )
+                );
             }
         });
     }
