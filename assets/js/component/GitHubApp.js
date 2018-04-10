@@ -11,7 +11,9 @@ class GitHubApp {
             source: this._onInputChange,
             select: this._onSelect,
             minLength: 1,
-            autoFocus: true
+            open: function() {
+                $("ul.ui-menu").width( $(this).innerWidth());
+            }
         });
     }
 
