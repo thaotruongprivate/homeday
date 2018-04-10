@@ -26,8 +26,7 @@ class GithubController extends Controller {
         $query = $request->get('query');
         list ($username, $repoFilter) = explode('/', $query);
 
-        $guzzle = new Client(['http_errors' => false]);
-        $response = $guzzle->get('https://api.github.com/users/' . urlencode($username) . '/repos');
+        $response = (new Client(['http_errors' => false]))->get('https://api.github.com/users/' . urlencode($username) . '/repos');
         $responseBody = json_decode($response->getBody(), true);
 
         if ($response->getStatusCode() === Response::HTTP_OK) {
@@ -75,8 +74,7 @@ class GithubController extends Controller {
             }
         }
 
-        $guzzle = new Client(['http_errors' => false]);
-        $res = $guzzle->get("https://api.github.com/repos/{$username}/{$repoName}/contributors");
+        $res = (new Client(['http_errors' => false]))->get("https://api.github.com/repos/{$username}/{$repoName}/contributors");
         $statusCode = $res->getStatusCode();
 
         if ($statusCode === Response::HTTP_OK) {
