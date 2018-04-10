@@ -9,14 +9,9 @@
 
 {% block body %}
     <div class="js-github">
-        <div id="repo">
-            <h1>Choose a GitHub Repo</h1>
-            <label>Choose repo:</label> <input type="text" class="autocomplete"  placeholder="Username/[repo match]"/>
-            <span class="error"></span>
-        </div>
-        <div id="contributors">
-            <label>Contributors:</label>
-            <div class="canvas"></div>
-        </div>
+        <h1>Choose a GitHub Repo</h1>
+        <label>Choose repo:</label> <input type="text" class="js-autocomplete" placeholder="Username/[repo match]"/>
+        <span class="js-error"></span>
+        <div class="js-canvas"></div>
     </div>
 {% endblock %}

@@ -7,30 +7,24 @@ class GitHubApp {
     constructor($wrapper) {
         this.$wrapper = $wrapper;
 
-        $('.autocomplete', this.$wrapper).autocomplete({
+        $('.js-autocomplete', this.$wrapper).autocomplete({
             source: this._onInputChange,
             select: this._onSelect,
             minLength: 1,
-            open: function() {
-                $("ul.ui-menu").width( $(this).innerWidth());
+            open: function () {
+                $("ul.ui-menu").width($(this).innerWidth());
             }
         });
     }
 
     _onSelect(event, ui) {
-        const $contributors = $('#contributors', this.$wrapper);
-        const $canvasDiv = $('.canvas', this.$wrapper);
-
-        $contributors.hide();
-        $canvasDiv.html('');
-        $('.error', this.$wrapper).html('');
-
+        $('.js-error', this.$wrapper).html('');
         $.ajax({
             url: `${Routing.generate('show_repo_contributors')}?query=${encodeURIComponent(ui.item.value)}`,
             dataType: 'json',
+
             success: (data) => {
-                $contributors.show();
-                const chart = new Chart($canvasDiv);
+                const chart = new Chart($('.js-canvas', this.$wrapper));
                 chart.drawChart(
                     data.names,
                     data.contributions,
@@ -38,20 +32,21 @@ class GitHubApp {
                         label: `Contributions in project ${ui.item.value}`
                     }
                 );
+                $('.js-canvas', this.$wrapper).show();
             },
             error: (xhr) => {
-                $('.error', this.$wrapper).html(JSON.parse(xhr.responseText).error);
+                $('.js-error', this.$wrapper).html(JSON.parse(xhr.responseText).error);
             }
         });
     }
 
     _onInputChange(request, response) {
 
-        $('.error', this.$wrapper).html('');
-        $('#contributors', this.$wrapper).hide();
+        $('.js-error', this.$wrapper).html('');
+        $('.js-canvas', this.$wrapper).hide();
 
         if (/[^\/]+\/[^\/]*/i.exec(request.term) === null) {
-            $('.error', this.$wrapper).html("Please write username optionally with repo's name in the correct format")
+            $('.js-error', this.$wrapper).html("Please write username optionally with repo's name in the correct format")
             return false;
         }
 
@@ -62,7 +57,7 @@ class GitHubApp {
                 response(data.repos);
             },
             error: (xhr) => {
-                $('.error', this.$wrapper).html(
+                $('.js-error', this.$wrapper).html(
                     JSON.parse(xhr.responseText).error
                 );
             }
