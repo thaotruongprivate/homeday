@@ -25,10 +25,6 @@ class GitHubApp {
         $canvasDiv.html('');
         $('.error', this.$wrapper).html('');
 
-        if (ui.item.value.search('/') === -1) {
-            return false;
-        }
-
         $.ajax({
             url: `${Routing.generate('show_repo_contributors')}?query=${encodeURIComponent(ui.item.value)}`,
             dataType: 'json',
@@ -54,7 +50,8 @@ class GitHubApp {
         $('.error', this.$wrapper).html('');
         $('#contributors', this.$wrapper).hide();
 
-        if (request.term.search('/') === -1) {
+        if (/[^\/]+\/[^\/]*/i.exec(request.term) === null) {
+            $('.error', this.$wrapper).html("Please write username optionally with repo's name in the correct format")
             return false;
         }
 
