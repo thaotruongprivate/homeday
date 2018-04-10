@@ -22,15 +22,26 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        cacheDirectory: true
+                        cacheDirectory: true,
+                        sourceMap: true
                     }
                 }
             },
             {
                 test: /\.css$/,
                 use: [
-                    'style-loader',
-                    'css-loader',
+                    {
+                        loader: 'style-loader',
+                        options: {
+                            sourceMap: true
+                        }
+                    },
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            sourceMap: true
+                        }
+                    }
 
                 ]
             },
@@ -47,4 +58,5 @@ module.exports = {
             }
         ]
     },
+    devtool: 'inline-source-map'
 };

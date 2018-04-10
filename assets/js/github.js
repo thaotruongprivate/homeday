@@ -4,6 +4,7 @@ require('babel-polyfill');
 require("jquery-ui/themes/base/core.css");
 require("jquery-ui/themes/base/theme.css");
 require("jquery-ui/themes/base/autocomplete.css");
+require("jquery-ui/themes/base/all.css");
 require("../css/github.css");
 
 $(document).ready(function () {
