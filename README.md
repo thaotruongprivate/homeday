@@ -1,6 +1,8 @@
 Find contributors of GitHub repos 
 =================================
 
+![alt text](https://raw.githubusercontent.com/thaotruongPrivate/homeday/master/public/screenshots/screenshot_1.png)
+
 This project lets you search for GitHub repositories and display who contributed to them on a chart.
 
 ## Setup
@@ -36,6 +38,5 @@ yarn install
 - because suggestions are loaded dynamically instead of pre-loaded, speed might be slow. If this app were to be deployed to production, user's queries and their suggestions should be cached in the browser to improve user's experience
 - I don't have much experience with responsive UI and my design skills aren't great so I did what I could to make the app look nice
 - GitHub seems to allow only 60 unauthorised API requests per IP address per hour, so if you want to make more, change your IP address frequently with VPN or alter the code to make authorised requests
-
 
 
