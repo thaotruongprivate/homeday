@@ -1,6 +1,6 @@
 'use strict';
 
-const ChartJs = require('chartjs');
+const ChartJs = require('chart.js');
 
 class Chart {
     constructor($wrapper) {

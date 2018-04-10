@@ -1,11 +1,19 @@
 {
   "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "css-loader": "^0.28.11",
+    "file-loader": "^1.1.11",
+    "style-loader": "^0.20.3",
     "webpack": "3",
     "webpack-cli": "^2.0.14"
   },
   "dependencies": {
-    "chartjs": "^0.3.24",
+    "chart.js": "^2.7.2",
     "jquery": "^3.3.1",
-    "jquery-autocomplete": "^1.2.8"
+    "jquery-ui": "^1.12.1",
+    "path": "^0.12.7"
   }
 }

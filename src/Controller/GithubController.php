@@ -19,22 +19,24 @@ class GithubController extends Controller {
     }
 
     /**
-     * @Route("/github/repos", name="show_repos", methods={"POST"})
+     * @Route("/github/repos", name="show_repos", methods={"GET"}, options={"expose" = true})
      */
-    public function showUserRepos(Request $request) {
-        $username = $request->get('username');
+    public function showRepos(Request $request) {
+
+        $query = $request->get('query');
+        list ($username, $repoFilter) = explode('/', $query);
+
         $guzzle = new Client(['http_errors' => false]);
-        $url = 'https://api.github.com/users/' . urlencode($username) . '/repos';
-
-        $response = $guzzle->get($url);
+        $response = $guzzle->get('https://api.github.com/users/' . urlencode($username) . '/repos');
         $responseBody = json_decode($response->getBody(), true);
+
         if ($response->getStatusCode() === Response::HTTP_OK) {
-
-            $repoFilter = strtolower($request->get('repo'));
             $data = [];
-
             foreach ($responseBody as $repo) {
-                if (($repoFilter && strpos(strtolower($repo['name']), $repoFilter) !== false) || !$repoFilter) {
+                if (
+                    ($repoFilter && strpos(strtolower($repo['name']), strtolower($repoFilter)) !== false) ||
+                    !$repoFilter
+                ) {
                     $data[] = $repo['full_name'];
                 }
             }
@@ -57,15 +59,24 @@ class GithubController extends Controller {
     }
 
     /**
-     * @Route("/github/repos/contributors", methods={"POST"}, name="show_repo_contributors")
+     * @Route("/github/contributors", methods={"GET"}, name="show_repo_contributors", options={"expose" = true})
      */
     public function showRepoContributors(Request $request) {
-        $username = urlencode($request->get('username'));
-        $repoName = urlencode($request->get('repo'));
-        $guzzle = new Client(['http_errors' => false]);
-        $url = "https://api.github.com/repos/{$username}/{$repoName}/contributors";
 
-        $res = $guzzle->get($url);
+        $query = $request->get('query');
+
+        list($username, $repoName) = explode('/', $query);
+
+        if (!$username || !$repoName) {
+            if (empty($body)) {
+                return new JsonResponse([
+                    'error' => 'Please give repo name in this format: username/repo_name'
+                ], Response::HTTP_BAD_REQUEST);
+            }
+        }
+
+        $guzzle = new Client(['http_errors' => false]);
+        $res = $guzzle->get("https://api.github.com/repos/{$username}/{$repoName}/contributors");
         $statusCode = $res->getStatusCode();
 
         if ($statusCode === Response::HTTP_OK) {
@@ -77,13 +88,12 @@ class GithubController extends Controller {
                 ], Response::HTTP_NOT_FOUND);
             }
 
-            $names = array_map(function($elm) {
-                return $elm['login'];
-            }, $body);
-
-            $contributions = array_map(function($elm) {
-                return $elm['contributions'];
-            }, $body);
+            $names = [];
+            $contributions = [];
+            foreach ($body as $contributor) {
+                $names[] = $contributor['login'];
+                $contributions[] = $contributor['contributions'];
+            }
 
             return new JsonResponse([
                 'names' => $names,
