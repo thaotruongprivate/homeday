@@ -1,5 +1,5 @@
 const $ = require('jquery');
-const autocomplete = require('jquery-ui/ui/widgets/autocomplete');
+require('jquery-ui/ui/widgets/autocomplete');
 const Chart = require('./Chart');
 const Routing = require('./Routing');
 
@@ -50,6 +50,7 @@ class GitHubApp {
     _onInputChange(request, response) {
 
         $('.error', this.$wrapper).html('');
+        $('#contributors', this.$wrapper).hide();
 
         if (request.term.search('/') === -1) {
             return false;

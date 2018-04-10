@@ -34651,7 +34651,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var $ = __webpack_require__(17);
-var autocomplete = __webpack_require__(272);
+__webpack_require__(272);
 var Chart = __webpack_require__(275);
 var Routing = __webpack_require__(324);
 
@@ -34706,6 +34706,7 @@ var GitHubApp = function () {
             var _this2 = this;
 
             $('.error', this.$wrapper).html('');
+            $('#contributors', this.$wrapper).hide();
 
             if (request.term.search('/') === -1) {
                 return false;
