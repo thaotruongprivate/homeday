@@ -46,7 +46,7 @@ class GitHubApp {
         $('.js-canvas', this.$wrapper).hide();
 
         if (/[^\/]+\/[^\/]*/i.exec(request.term) === null) {
-            $('.js-error', this.$wrapper).html("Please write username optionally with repo's name in the correct format")
+            $('.js-error', this.$wrapper).html("Please write username optionally with repo's name in the correct format");
             return false;
         }
 
